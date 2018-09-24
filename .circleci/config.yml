@@ -36,9 +36,9 @@ jobs:
       steps:
       - restore_cache:
           key: test123-{{ .Environment.CIRCLE_SHA1 }}
-      -run:
-        name: ls -la
-        command: ls -la
+      - run:
+          name: ls -la
+          command: ls -la
 
 
 
