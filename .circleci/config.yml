@@ -6,6 +6,10 @@ jobs:
       working_directory: ~/test
       steps:
         - checkout
+        - run :
+            command: |
+             echo "export $SECRET">>$BASH_ENV
+             source $BASH_ENV
         - run:
             name: run test 
             command: mvn test 
@@ -49,7 +53,7 @@ jobs:
       -  run:
            name: Delete delete_all
            command: rm -rf ~/test
-      - run:
+      - run: 
           name: show workspace
           command: ls -la
 
