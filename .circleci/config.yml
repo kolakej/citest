@@ -39,8 +39,19 @@ jobs:
       - run:
           name: ls -la
           command: ls -la
-
-
+   delete_all:
+      docker:
+         - image: circleci/openjdk:8-jdk
+      working_directory: ~/test
+      steps:
+      - restore_cache:
+          key: test123-{{ .Environment.CIRCLE_SHA1 }}
+      -run:
+          name: Delete delete_all
+          command: rm -rf ~/test
+      -run:
+          name: show workspace
+          command: ls -la
 
 workflows:
   version: 2
@@ -51,5 +62,9 @@ workflows:
          requires:
           - test
       - show_env:
+          requires:
+            - package
+      - delete_all:
+          type: approval
           requires:
             - package
