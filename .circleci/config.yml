@@ -32,6 +32,11 @@ jobs:
             key: test123-{{ .Environment.CIRCLE_SHA1 }}
             paths:
               - ~/test
+        - run:
+            name: restore variable
+            command: |
+              source $BASH_ENV
+              echo $SECRET
 
    show_env:
       docker:
