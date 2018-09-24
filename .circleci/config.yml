@@ -5,8 +5,8 @@ jobs:
       - image: circleci/openjdk:8-jdk
     steps:
       - checkout
-      - run: mvn test 
-    test:
+      - run: mvn test       
+    package:
     docker:
       - image: circleci/openjdk:8-jdk
     steps:
@@ -17,4 +17,4 @@ workflows:
   build_and_test:
     jobs:
       - build
-      - test
+      - package
