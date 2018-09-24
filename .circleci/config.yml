@@ -1,17 +1,17 @@
 version: 2.0
 jobs:
    build:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: mvn test       
-    package:
-    docker:
-      - image: circleci/openjdk:8-jdk
-    steps:
-      - checkout
-      - run: mvn package
+      docker:
+        - image: circleci/openjdk:8-jdk
+      steps:
+        - checkout
+        - run: mvn test       
+   package:
+      docker:
+        - image: circleci/openjdk:8-jdk
+      steps:
+        - checkout
+        - run: mvn package
 workflows:
   version: 2
   build_and_test:
