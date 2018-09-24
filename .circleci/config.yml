@@ -46,4 +46,9 @@ workflows:
   build_and_test:
     jobs:
       - test
-      - package
+      - package:
+         requires:
+          - test
+      - show_env:
+          requires:
+            - package
