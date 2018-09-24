@@ -17,11 +17,30 @@ jobs:
    package:
       docker:
         - image: circleci/openjdk:8-jdk
+      working_directory: ~/test
       steps:
         - checkout
         - run: 
             name: package
             command: mvn package
+        - save_cache:
+            key: test123
+            paths:
+              - ~/test
+
+   show_env:
+      docker:
+        - image: circleci/openjdk:8-jdk
+      working_directory: ~/circleci-demo-workflows
+      steps:
+      - restore_cache:
+          key: test123
+      -run:
+        name: ls -la
+        command: ls -la
+
+
+
 workflows:
   version: 2
   build_and_test:
