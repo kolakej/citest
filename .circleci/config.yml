@@ -10,7 +10,7 @@ jobs:
             name: run test 
             command: mvn test 
         - save_cache:
-            key: test
+            key: test-{{ .Environment.CIRCLE_SHA1 }}
             paths:
               - ~/test
 
@@ -19,22 +19,23 @@ jobs:
         - image: circleci/openjdk:8-jdk
       working_directory: ~/test
       steps:
-        - checkout
+        - restore_cache:
+            key: test-{{ .Environment.CIRCLE_SHA1 }}
         - run: 
             name: package
             command: mvn package
         - save_cache:
-            key: test123
+            key: test123-{{ .Environment.CIRCLE_SHA1 }}
             paths:
               - ~/test
 
    show_env:
       docker:
         - image: circleci/openjdk:8-jdk
-      working_directory: ~/circleci-demo-workflows
+      working_directory: ~/test
       steps:
       - restore_cache:
-          key: test123
+          key: test123-{{ .Environment.CIRCLE_SHA1 }}
       -run:
         name: ls -la
         command: ls -la
