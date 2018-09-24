@@ -1,14 +1,19 @@
 version: 2.1
 jobs:
    test:
-      working_directory: ~/mern-starter
       docker:
         - image: circleci/openjdk:8-jdk
+      working_directory: ~/test
       steps:
         - checkout
         - run:
             name: run test 
-            command: mvn test       
+            command: mvn test 
+        - save_cache:
+            key: test
+            paths:
+              - ~/test
+
    package:
       docker:
         - image: circleci/openjdk:8-jdk
