@@ -4,6 +4,9 @@ jobs:
       docker:
         - image: circleci/openjdk:8-jdk
       working_directory: ~/test
+      branches:
+               only:
+                 - master
       steps:
         - checkout
         - run :
@@ -35,6 +38,7 @@ jobs:
         - run:
             name: restore variable
             command: |
+              source $BASH_ENV
               echo $SECRET
 
    show_env:
