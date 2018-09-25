@@ -5,8 +5,7 @@ jobs:
         - image: circleci/openjdk:8-jdk
       working_directory: ~/test
       branches:
-        only:
-          master
+        only: master
       steps:
         - checkout
         - run :
