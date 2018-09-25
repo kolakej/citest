@@ -4,6 +4,9 @@ jobs:
       docker:
         - image: circleci/openjdk:8-jdk
       working_directory: ~/test
+      branches:
+        only:
+          master
       steps:
         - checkout
         - run :
@@ -48,6 +51,7 @@ jobs:
       - run:
           name: ls -la
           command: ls -la
+
    delete_all:
       docker:
          - image: circleci/openjdk:8-jdk
