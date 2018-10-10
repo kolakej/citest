@@ -58,7 +58,7 @@ jobs:
       steps:
       - restore_cache:
           key: test123-{{ .Environment.CIRCLE_SHA1 }}
-      -  run:
+      - run:
            name: Delete delete_all
            command: rm -rf ~/test
       - run: 
