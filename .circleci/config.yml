@@ -68,7 +68,7 @@ workflows:
   build_and_test:
     jobs:
       - test_maven
-      - package:
+      - package_maven:
          requires:
           - test_maven
       - show_env:
