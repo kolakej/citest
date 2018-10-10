@@ -1,6 +1,6 @@
 version: 2.1
 jobs:
-   test:
+   test_maven:
       docker:
         - image: circleci/openjdk:8-jdk
       working_directory: ~/test
@@ -20,7 +20,7 @@ jobs:
             paths:
               - ~/test
 
-   package:
+   package_maven:
       docker:
         - image: circleci/openjdk:8-jdk
       working_directory: ~/test
@@ -69,14 +69,14 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
+      - test_maven
       - package:
          requires:
-          - test
+          - test_maven
       - show_env:
           requires:
-            - package
+            - package_maven
       - delete_all:
           type: approval
           requires:
-            - package
+            - package_maven
